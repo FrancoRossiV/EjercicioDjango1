@@ -9,17 +9,43 @@ from Biblioteca.models import Usuario
 class UsuarioAdmin(admin.ModelAdmin):
 
 	fieldsets = (
-		('Informacion Personal', {
-			'fields': ('Nombre', 'Direccion', 'Telefono')
+		('Datos', {
+			'fields': ('Nombre',)
 			}),
-		(None ,{
-			'fields': ()
+		('Cintacto',{
+			'fields': ('Direccion', 'Telefono')
 			})
 		)
 
+class LibroAdmin(admin.ModelAdmin):
+    list_display = ('Titulo', 'Editorial')
+
+
+
+
+class EjemplarAdmin(admin.ModelAdmin):
+	list_filter = ('Libro',)	
+
+
+
+
+class LibroInline(admin.TabularInline):
+    model = Libro
+
+
+
+
+class AutorAdmin(admin.ModelAdmin):
+	inlines = [LibroInline, ]
+	search_fields = ['Nombre', ]
+
+
+
+
+
 
 # Register your models here.
-admin.site.register(Autor,)
-admin.site.register(Libro,)
-admin.site.register(Ejemplar,)
+admin.site.register(Autor,AutorAdmin)
+admin.site.register(Libro,LibroAdmin)
+admin.site.register(Ejemplar, EjemplarAdmin)
 admin.site.register(Usuario, UsuarioAdmin)
