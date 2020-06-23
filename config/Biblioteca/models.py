@@ -10,7 +10,7 @@ class Autor(models.Model):
         return "Autor: " + str(self.Codigo) + " " + str(self.Nombre)
 
 class Libro(models.Model):
-    Codigo = models.AutoField(primary_key=True)
+    Codigo = models.AutoField(primary_key=True, max_length=50)
     Titulo = models.CharField(max_length=50)
     Editorial = models.CharField(max_length=50)
     Paginas = models.IntegerField()

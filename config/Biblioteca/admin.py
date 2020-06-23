@@ -7,15 +7,15 @@ from Biblioteca.models import Usuario
 
 
 class UsuarioAdmin(admin.ModelAdmin):
-
+	list_display = ('Nombre', 'Direccion','Telefono')
 	fieldsets = (
 		('Datos', {
 			'fields': ('Nombre',)
 			}),
-		('Cintacto',{
+		('Contacto',{
 			'fields': ('Direccion', 'Telefono')
 			})
-		)
+	)
 
 class LibroAdmin(admin.ModelAdmin):
     list_display = ('Titulo', 'Editorial')
@@ -24,6 +24,7 @@ class LibroAdmin(admin.ModelAdmin):
 
 
 class EjemplarAdmin(admin.ModelAdmin):
+	list_display = ('Libro', 'Usuario','Localizacion')
 	list_filter = ('Libro',)	
 
 
@@ -36,6 +37,7 @@ class LibroInline(admin.TabularInline):
 
 
 class AutorAdmin(admin.ModelAdmin):
+	list_display = ('Nombre',)
 	inlines = [LibroInline, ]
 	search_fields = ['Nombre', ]
 
